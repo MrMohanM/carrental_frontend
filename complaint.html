@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyCars Admin - Complaint Management</title>
+    <style>
+        :root {
+            --primary-color: rgba(243, 113, 26, 0.904);
+            --secondary-color: #0594d8;
+            --bg-color: #e2d9d9;
+            --panel-color: rgb(219, 218, 186);
+            --text-dark: #333;
+            --box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+        }
+
+        /* Header styles */
+        .header {
+            background-color: var(--panel-color);
+            box-shadow: var(--box-shadow);
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        .header h2 {
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .header span {
+            color: var(--secondary-color);
+        }
+
+        /* Main content styles */
+        .main-content {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .search {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .search input {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .filter-options select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background-color: white;
+        }
+
+        .complaints-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead th {
+            background-color: var(--panel-color);
+            padding: 12px;
+            text-align: left;
+            position: sticky;
+            top: 0;
+        }
+
+        tbody td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .status {
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 12px;
+            text-align: center;
+            display: inline-block;
+            min-width: 80px;
+        }
+
+        .pending {
+            background-color: #ffecb3;
+            color: #856404;
+        }
+
+        .in-progress {
+            background-color: #b3e0ff;
+            color: #0c5460;
+        }
+
+        .resolved {
+            background-color: #c3e6cb;
+            color: #155724;
+        }
+
+        .rejected {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .action-btn {
+            padding: 6px 12px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            margin-right: 5px;
+            font-size: 12px;
+        }
+
+        .view-btn {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            padding: 8px 12px;
+            margin: 0 5px;
+            border: 1px solid #ccc;
+            background-color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .pagination button.active {
+            background-color: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            width: 70%;
+            max-width: 800px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: black;
+        }
+
+        .complaint-details {
+            margin-top: 20px;
+        }
+
+        .complaint-details h3 {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .info-label {
+            width: 150px;
+            font-weight: bold;
+        }
+
+        .info-value {
+            flex: 1;
+        }
+
+        .response-section {
+            margin-top: 30px;
+        }
+
+        .response-section textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            height: 100px;
+            margin-bottom: 15px;
+            resize: vertical;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-resolve {
+            background-color: #28a745;
+        }
+
+        .btn-reject {
+            background-color: #dc3545;
+        }
+
+        .btn-progress {
+            background-color: #17a2b8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h2><span>Easy</span>Cars</h2>
+    </div>
+
+    <div class="main-content">
+            <div class="page-title">
+                <h1>User Complaints </h1>
+            </div>
+
+           
+            <div class="filters">
+                <div class="search">
+                    <input type="text" placeholder="Search by ID, user, or keyword..." id="searchInput">
+                </div>
+                <div class="filter-options">
+                    <select id="statusFilter">
+                        <option value="all">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="resolved">Resolved</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="complaints-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>User</th>
+                            <th>Subject</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="complaintsTableBody">
+                        <!-- Table rows will be inserted dynamically by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination">
+                <button>&laquo;</button>
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>&raquo;</button>
+            </div>
+        </div>
+
+    <div id="complaintModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Complaint Details</h2>
+            <div class="complaint-details">
+                <h3 id="complaintSubject">Loading...</h3>
+                
+                <div class="info-row">
+                    <div class="info-label">Complaint ID:</div>
+                    <div class="info-value" id="complaintId"></div>
+                </div>
+                
+                <div class="info-row">
+                    <div class="info-label">Submitted By:</div>
+                    <div class="info-value" id="complaintUser"></div>
+                </div>
+                
+                <div class="info-row">
+                    <div class="info-label">User Type:</div>
+                    <div class="info-value" id="userType"></div>
+                </div>
+                
+                <div class="info-row">
+                    <div class="info-label">Date Submitted:</div>
+                    <div class="info-value" id="complaintDate"></div>
+                </div>
+                
+                <div class="info-row">
+                    <div class="info-label">Status:</div>
+                    <div class="info-value" id="complaintStatus"></div>
+                </div>
+                
+                <div class="info-row">
+                    <div class="info-label">Description:</div>
+                    <div class="info-value" id="complaintDescription"></div>
+                </div>
+                
+                <div class="response-section">
+                    <h3>Admin Response</h3>
+                    <textarea id="responseText" placeholder="Enter your response here..."></textarea>
+                    <div class="btn-group">
+                        <button class="btn btn-progress" id="markProgress">Mark as In Progress</button>
+                        <button class="btn btn-resolve" id="resolveComplaint">Resolve Complaint</button>
+                        <button class="btn btn-reject" id="rejectComplaint">Reject Complaint</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample complaint data - this would typically come from your backend
+        const complaints = [
+            {
+                id: "COMP001",
+                userId: "USER123",
+                userName: "John Smith",
+                userType: "Renter",
+                subject: "Car not in advertised condition",
+                description: "The car I rented had scratches and dents that were not shown in the photos. The interior also had stains on the seats.",
+                dateSubmitted: "2025-04-28",
+                status: "pending"
+            },
+            {
+                id: "COMP002",
+                userId: "USER456",
+                userName: "Alice Johnson",
+                userType: "Renter",
+                subject: "Late delivery of vehicle",
+                description: "I was supposed to receive my rental car at 9:00 AM, but the owner did not show up until 12:30 PM. This caused me to miss an important appointment.",
+                dateSubmitted: "2025-04-29",
+                status: "in-progress"
+            },
+            {
+                id: "COMP003",
+                userId: "USER789",
+                userName: "Robert Chen",
+                userType: "Owner",
+                subject: "Renter returned car with damages",
+                description: "The renter returned my car with a large scratch on the passenger door that wasn't there before. They refuse to pay for the damage.",
+                dateSubmitted: "2025-05-01",
+                status: "pending"
+            },
+            {
+                id: "COMP004",
+                userId: "USER234",
+                userName: "Sarah Miller",
+                userType: "Renter",
+                subject: "Incorrect charges on booking",
+                description: "I was charged $50 more than the price shown on the booking page. I have screenshots of the original price.",
+                dateSubmitted: "2025-05-02",
+                status: "resolved"
+            },
+            {
+                id: "COMP005",
+                userId: "USER567",
+                userName: "David Wilson",
+                userType: "Owner",
+                subject: "Payment not received",
+                description: "I rented out my car on April 25th, but I haven't received the payment yet even though the system shows the rental as completed.",
+                dateSubmitted: "2025-05-03",
+                status: "rejected"
+            }
+        ];
+
+        // Populate the table when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            populateComplaintsTable(complaints);
+            setupEventListeners();
+        });
+
+        // Populate the complaints table
+        function populateComplaintsTable(data) {
+            const tableBody = document.getElementById('complaintsTableBody');
+            tableBody.innerHTML = '';
+
+            data.forEach(complaint => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${complaint.id}</td>
+                    <td>${complaint.userName}</td>
+                    <td>${complaint.subject}</td>
+                    <td>${complaint.dateSubmitted}</td>
+                    <td><span class="status ${complaint.status}">${formatStatus(complaint.status)}</span></td>
+                    <td>
+                        <button class="action-btn view-btn" data-id="${complaint.id}">View Details</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Format status text
+        function formatStatus(status) {
+            switch(status) {
+                case 'pending': return 'Pending';
+                case 'in-progress': return 'In Progress';
+                case 'resolved': return 'Resolved';
+                case 'rejected': return 'Rejected';
+                default: return status;
+            }
+        }
+
+        // Set up event listeners
+        function setupEventListeners() {
+            // Modal functionality
+            const modal = document.getElementById('complaintModal');
+            const span = document.getElementsByClassName('close')[0];
+
+            // When the user clicks on the close button, close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            // View details button click
+            document.querySelectorAll('.view-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const complaintId = this.getAttribute('data-id');
+                    openComplaintModal(complaintId);
+                });
+            });
+
+            // Filter by status
+            document.getElementById('statusFilter').addEventListener('change', filterComplaints);
+            
+            // Search functionality
+            document.getElementById('searchInput').addEventListener('input', filterComplaints);
+
+            // Action buttons in modal
+            document.getElementById('markProgress').addEventListener('click', function() {
+                updateComplaintStatus('in-progress');
+            });
+
+            document.getElementById('resolveComplaint').addEventListener('click', function() {
+                updateComplaintStatus('resolved');
+            });
+
+            document.getElementById('rejectComplaint').addEventListener('click', function() {
+                updateComplaintStatus('rejected');
+            });
+        }
+
+        // Open the complaint modal with details
+        function openComplaintModal(complaintId) {
+            const complaint = complaints.find(c => c.id === complaintId);
+            if (!complaint) return;
+
+            // Fill in the modal with complaint details
+            document.getElementById('complaintSubject').textContent = complaint.subject;
+            document.getElementById('complaintId').textContent = complaint.id;
+            document.getElementById('complaintUser').textContent = `${complaint.userName} (ID: ${complaint.userId})`;
+            document.getElementById('userType').textContent = complaint.userType;
+            document.getElementById('complaintDate').textContent = complaint.dateSubmitted;
+            document.getElementById('complaintStatus').textContent = formatStatus(complaint.status);
+            document.getElementById('complaintDescription').textContent = complaint.description;
+
+            // Store the current complaint ID in the modal for reference
+            document.getElementById('complaintModal').setAttribute('data-current-id', complaintId);
+
+            // Show the modal
+            document.getElementById('complaintModal').style.display = "block";
+        }
+
+        // Update complaint status
+        function updateComplaintStatus(newStatus) {
+            const modal = document.getElementById('complaintModal');
+            const complaintId = modal.getAttribute('data-current-id');
+            const response = document.getElementById('responseText').value;
+
+            if (!response.trim()) {
+                alert('Please enter a response before updating the status.');
+                return;
+            }
+
+            // Find the complaint in our array
+            const complaintIndex = complaints.findIndex(c => c.id === complaintId);
+            if (complaintIndex !== -1) {
+                // Update the status
+                complaints[complaintIndex].status = newStatus;
+                
+                // In a real application, you would send this to your server
+                // For now, we'll just update our local data and UI
+                
+                // Refresh the table
+                populateComplaintsTable(complaints);
+                
+                // Re-attach event listeners
+                setupEventListeners();
+                
+                // Update the status in the modal
+                document.getElementById('complaintStatus').textContent = formatStatus(newStatus);
+                
+                // Show confirmation
+                alert(`Complaint ${complaintId} has been marked as ${formatStatus(newStatus)}.`);
+            }
+        }
+
+        // Filter complaints based on search input and status selection
+        function filterComplaints() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+
+            const filteredComplaints = complaints.filter(complaint => {
+                // Filter by status
+                const statusMatch = statusFilter === 'all' || complaint.status === statusFilter;
+                
+                // Filter by search term
+                const searchMatch = 
+                    complaint.id.toLowerCase().includes(searchTerm) || 
+                    complaint.userName.toLowerCase().includes(searchTerm) || 
+                    complaint.subject.toLowerCase().includes(searchTerm) ||
+                    complaint.description.toLowerCase().includes(searchTerm);
+                
+                return statusMatch && searchMatch;
+            });
+
+            populateComplaintsTable(filteredComplaints);
+            setupEventListeners();
+        }
+    </script>
+</body>
+</html>

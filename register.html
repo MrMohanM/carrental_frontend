@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easycars Register</title>
+    <script src="register.js"></script>
     <style>
         body, html {
             height: 100%;
@@ -29,78 +30,122 @@
         .header span {
             color: #0594d8;
         }
-        .header h1{
+        .header h1 {
             color: rgba(243, 113, 26, 0.904);
         }
-        .container {
+        .container 
+        {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; 
+            height: calc(100vh - 100px);
+            margin-top: 100px; 
         }
 
-        .Register-container {
+        .register-container {
+            margin-top: 80px;
             width: 400px;
-            height: 350px;
             box-shadow: 5px 5px 5px 5px rgba(243, 113, 26, 0.904);
             border-radius: 10px;
             background-color: rgb(219, 218, 186);
             padding: 20px;
             text-align: center;
-
         }
-        .Register-container a{
+        
+        .register-container a {
             color: rgba(243, 113, 26, 0.904);
         }
 
-        input {
-            border-radius: 05%;
+        input, select {
+            width: 90%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
             box-shadow: 0 5px 5px rgba(133, 130, 130, 0.1);
         }
 
         button {
             color: rgb(7, 7, 7);
-            border-radius: 15%;
+            border-radius: 15px;
             border: 2px solid rgb(77, 76, 75);
             background-color: #0594d8;
             font-size: 20px;
             font-family: 'Times New Roman', Times, serif;
             cursor: pointer;
+            padding: 8px 20px;
+            margin-top: 15px;
         }
-
+        
+        .form-group {
+            margin-bottom: 10px;
+            text-align: left;
+        }
+        
+        #owner-info,
+        #renter-info {
+            display: none;
+        }
     </style>
 </head>
 <body>
-
     <div class="header">
-        <h1><span s>Easy</span>Cars</h1>
+        <h1><span>Easy</span>Cars</h1>
     </div>
 
     <div class="container">
-        <div class="Register-container">
+        <div class="register-container">
             <h1>Register</h1>
-            <form>
-                <label for="Username">Username:</label>
-                <input type="text" class="Username" id="Username" placeholder="Username/Email">
-                <br><br>
-                <label for="contact">Contact:</label>
-                <input type="text" class="contact" id="contact" placeholder="Phone">
-                <br><br>
-                <label for="adno">Adharacard no</label>
-                <input type="text" class="adno" id="no" placeholder="Phone">
-                <br><br>
-                <label for="Password">Password:</label>
-                <input type="password" class="Password" id="Password">
-                <br> <br>
-                <label for="confrimPsw">Confrim Password:</label>
-                <input type="password" class="confrimPsw" id="confrimPsw">
-                <br> <br>
-                <button class="register" id="register">Register</button>
-                <br>
-                <p>already having account?<a href="login.html">Login</a></p>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" placeholder="Username/Email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact">Contact:</label>
+                    <input type="tel" id="contact" placeholder="Phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="adno">Aadhaar Card No:</label>
+                    <input type="text" id="adno" placeholder="Aadhaar Number" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="usertype">User Type:</label>
+                    <select id="usertype" required onchange="adjustForm(this.form);">
+                        <option value="">Select User Type</option>
+                        <option value="owner">Owner</option>
+                        <option value="renter">Renter</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="renter-info">
+                    <label for="license_no">License Number:</label>
+                    <input type="text" id="license_no" placeholder="License Number">
+                </div>
+                
+                <div class="form-group" id="owner-info">
+                    <label for="rc_no">RC Number:</label>
+                    <input type="text" id="rc_no" placeholder="RC Number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPsw">Confirm Password:</label>
+                    <input type="password" id="confirmPsw" required>
+                </div>
+                
+                <button type="submit" id="register">Register</button>
+                
+                <p>Already have an account? <a href="login.html">Login</a></p>
             </form>
         </div>
     </div>
-
 </body>
 </html>
