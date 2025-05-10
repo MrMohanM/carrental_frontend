@@ -15,6 +15,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#car">Find Cars</a></li>
                 <li><a href="#how">How it works</a></li>
+                <li><a href="#complaint">Complaint Register</a></li>
                 <li><a href="#">About us</a></li>
                 <li><a href="#">Contact us</a></li>
             </ul>
@@ -47,10 +48,39 @@
                 </div>
             </form>
         </div>
+        <hr>
          <h2 class="title"> Feat<span class="middle-underline">ured C</span>ars</h2>
          <br>
         <div class="car-container" id="car">
-        </div>   
+        <!-- The car listing here-->
+        </div> 
+        <hr>  
+        <div class="complaint" id="complaint">
+            <h2 class="title">Regist<span class="middle-underline">er Compl</span>aint</h2>
+            <form class="complaint-form" style="max-width:500px; margin:auto; display:flex; flex-direction:column; gap:15px; margin-top: 30px;">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        
+            <label for="userType">User Type:</label>
+            <select id="userType" name="userType" required style="padding:8px; border-radius:5px; font-size:medium;">
+                <option value="" disabled selected>Select user type</option>
+                <option value="renter">Renter</option>
+                <option value="user">User</option>
+            </select>
+        
+            <label for="bookingId">Booking ID (optional):</label>
+            <input type="text" id="bookingId" name="bookingId" placeholder="Your Booking ID">
+        
+            <label for="issue">Complaint Details:</label>
+            <textarea id="issue" name="issue" rows="5" placeholder="Describe the issue you're facing..." required></textarea>
+        
+            <input type="submit" value="Submit Complaint" class="submit-btn" style="background-color:#0594d8; color:white; border:none; padding:10px; border-radius:5px; font-weight:600; cursor:pointer;">
+            </form>
+        </div>
+        <hr>
         <h2 class="title" id="how"> Ho<span class="middle-underline">w It W</span>orks</h2>
         <div class="step-container">
             <div class="step">

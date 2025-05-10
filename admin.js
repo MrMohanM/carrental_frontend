@@ -1,3 +1,81 @@
+const trips=[
+    {
+        no:"1",
+        clientname:"priyanshu",
+        cartype: "Maruti Suzuki Alto",
+        carnumber:"TN 11 aq 4505",
+        ownername:"Mohan M",
+        tripstatus: "finished"
+    },
+    {
+        no:"2",
+        clientname:"priyanshu",
+        cartype: "Maruti Suzuki Alto",
+        carnumber:"TN 11 aq 4505",
+        ownername:"Mohan M",
+        tripstatus: "finished"
+    },
+    {
+        no:"3",
+        clientname:"priyanshu",
+        cartype: "Maruti Suzuki Alto",
+        carnumber:"TN 11 aq 4505",
+        ownername:"Mohan M",
+        tripstatus: "finished"
+    },
+    {
+        no:"4",
+        clientname:"priyanshu",
+        cartype: "Maruti Suzuki Alto",
+        carnumber:"TN 11 aq 4505",
+        ownername:"Mohan M",
+        tripstatus: "finished"
+    }
+]
+const client=[
+    {
+        no:1,
+        clientname:"Leo William",
+        licensenumber:"TN-11-2024-1234567",
+        contact:"9140480297",
+        status:"verified"
+    },
+    {
+        no:2,
+        clientname:"Leo William",
+        licensenumber:"TN-11-2024-1234567",
+        contact:"9140480297",
+        status:"verified"
+    },
+    {
+        no:3,
+        clientname:"Leo William",
+        licensenumber:"TN-11-2024-1234567",
+        contact:"9140480297",
+        status:"verified"
+    },
+    {
+        no:4,
+        clientname:"Leo William",
+        licensenumber:"TN-11-2024-1234567",
+        contact:"9140480297",
+        status:"verified"
+    },
+    {
+        no:5,
+        clientname:"Leo William",
+        licensenumber:"TN-11-2024-1234567",
+        contact:"9140480297",
+        status:"verified"
+    },
+    {
+        no:6,
+        clientname:"Leo William",
+        licensenumber:"TN-11-2024-1234567",
+        contact:"9140480297",
+        status:"verified"
+    }
+]
 const vechile=[
     {   no:1,
         ownername:"Mohan M",
@@ -36,44 +114,28 @@ const vechile=[
         status:"verified"
     }
 ]
-const trip=[
-    {
-        no:"1",
-        clientname:"priyanshu",
-        cartype: "Maruti Suzuki Alto",
-        carnumber:"TN 11 aq 4505",
-        ownername:"Mohan M",
-        tripstatus: "finished"
-    },
-    {
-        no:"2",
-        clientname:"priyanshu",
-        cartype: "Maruti Suzuki Alto",
-        carnumber:"TN 11 aq 4505",
-        ownername:"Mohan M",
-        tripstatus: "finished"
-    },
-    {
-        no:"3",
-        clientname:"priyanshu",
-        cartype: "Maruti Suzuki Alto",
-        carnumber:"TN 11 aq 4505",
-        ownername:"Mohan M",
-        tripstatus: "finished"
-    },
-    {
-        no:"4",
-        clientname:"priyanshu",
-        cartype: "Maruti Suzuki Alto",
-        carnumber:"TN 11 aq 4505",
-        ownername:"Mohan M",
-        tripstatus: "finished"
-    }
-]
 document.addEventListener('DOMContentLoaded', function() {
     populateVechileTable(vechile);
-    populateTripTable(trip);
+    populateTripTable(trips);
+    populateRenterTable(client); 
 });
+function populateRenterTable(data) {
+    const tableBody = document.getElementById('renter-details');
+    tableBody.innerHTML = '';
+
+    data.forEach(ren => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${ren.no}</td>
+            <td>${ren.clientname}</td>
+            <td>${ren.licensenumber}</td>
+            <td>${ren.contact}</td>
+            <td><span class="status ${ren.status}">${formatStatus(ren.status)}</span></td>
+            
+        `;
+        tableBody.appendChild(row);
+    });
+}
 function populateVechileTable(data) {
     const tableBody = document.getElementById('vehicle-details');
     tableBody.innerHTML = '';
@@ -118,15 +180,26 @@ function formatStatus(status) {
         default: return status;
     }
 }
-function renter(){
-        document.getElementById("renter").style.display="block";
+function trip(){
+        document.getElementById("trip").style.display="block";
     
         document.getElementById("owner").style.display="none";   
+
+        document.getElementById("renter").style.display="none";   
 }
 function owner(){
     document.getElementById("owner").style.display="block";
 
+    document.getElementById("trip").style.display="none";   
+
     document.getElementById("renter").style.display="none";   
+}
+function renter(){
+    document.getElementById("renter").style.display="block";   
+
+    document.getElementById("owner").style.display="none";
+
+    document.getElementById("trip").style.display="none";   
 }
 function complaints(){
     window.location.href="complaint.html"

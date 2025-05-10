@@ -99,7 +99,7 @@ input{
 }
 .car-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 30px;
     margin-bottom: 50px;
 }
@@ -109,6 +109,7 @@ input{
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s ease;
+    box-shadow: 5px 5px 5px 5px rgba(133, 132, 130, 0.3);
 }
 .car-card:hover{
     box-shadow: 5px 5px 5px 5px rgba(226, 141, 29, 0.753);
@@ -197,9 +198,27 @@ input{
     background-color: #0482c0;
     color: #ffffff;
 }
+.complaint {
+    width: 500px;
+    height: auto;
+    box-shadow:  rgba(26, 25, 25, 0.5);
+    border-radius: 12px;
+    background-color:rgb(209, 209, 209);
+    padding: 25px 20px;
+    text-align: center;
+    margin: 20px auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.complaint:hover {
+    transform: translateY(-5px);
+    box-shadow:  rgba(26, 25, 25);
+}
+
+
 .step-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 30px;
     margin-bottom: 50px;
    

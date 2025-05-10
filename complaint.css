@@ -1,0 +1,267 @@
+:root {
+    --primary-color: rgba(243, 113, 26, 0.904);
+    --secondary-color: hsl(199, 95%, 43%);
+    --bg-color: #e2d9d9;
+    --panel-color: rgb(219, 218, 186);
+    --text-dark: #333;
+    --box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+}
+
+/* Header styles */
+.header {
+    background-color: var(--panel-color);
+    box-shadow: var(--box-shadow);
+    padding: 15px 20px;
+    text-align: center;
+}
+
+.header h2 {
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.header span {
+    color: var(--secondary-color);
+}
+
+/* Main content styles */
+.main-content {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-title {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+}
+
+.search {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.search input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.filter-options select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: white;
+}
+
+.complaints-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    background-color: var(--panel-color);
+    padding: 12px;
+    text-align: left;
+    position: sticky;
+    top: 0;
+}
+
+tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.status {
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 12px;
+    text-align: center;
+    display: inline-block;
+    min-width: 80px;
+}
+
+.pending {
+    background-color: #ffecb3;
+    color: #856404;
+}
+
+.in-progress {
+    background-color: #b3e0ff;
+    color: #0c5460;
+}
+
+.resolved {
+    background-color: #c3e6cb;
+    color: #155724;
+}
+
+.rejected {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.action-btn {
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+    font-size: 12px;
+}
+
+.view-btn {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.pagination button.active {
+    background-color: var(--secondary-color);
+    color: white;
+    border-color: var(--secondary-color);
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    width: 70%;
+    max-width: 800px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: black;
+}
+
+.complaint-details {
+    margin-top: 20px;
+}
+
+.complaint-details h3 {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.info-row {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.info-label {
+    width: 150px;
+    font-weight: bold;
+}
+
+.info-value {
+    flex: 1;
+}
+
+.response-section {
+    margin-top: 30px;
+}
+
+.response-section textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 100px;
+    margin-bottom: 15px;
+    resize: vertical;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-resolve {
+    background-color: #28a745;
+}
+
+.btn-reject {
+    background-color: #dc3545;
+}
+
+.btn-progress {
+    background-color: #17a2b8;
+}

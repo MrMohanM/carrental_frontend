@@ -12,14 +12,14 @@
         <div class="header-container">
             <h1 class="easycars">Easy<span>Cars</span></h1>
             <ul class="nav">
-                <li><a href="#renter" onclick="renter(); setActiveLink(event)">Renter</a></li>
+                <li><a href="#trip" onclick="trip(); setActiveLink(event)">Trip</a></li>
+                <li><a href="#renter" onclick="stats(); setActiveLink(event)">Renter</a></li>
                 <li><a href="#owner" onclick="owner(); setActiveLink(event)">Car Owner</a></li>
-                <li><a href="#stats" onclick="stats(); setActiveLink(event)">Stats</a></li>
                 <li><a href="#complaints" onclick="complaints(); setActiveLink(event)">Complaints</a></li>
             </ul>
          </div>
     </header>
-    <div class="renter" id="renter" >
+    <div class="trip" id="trip" >
         <div class="dashboard-header">
             <button class="start-btn">Start Exploring</button>
             <img src="car.jpg" alt="Car" height="300" width="500">
@@ -40,6 +40,30 @@
                     </tr>
                 </thead>
                 <tbody id="trip-details">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="renter"id="renter">
+        <div class="dashboard-header">
+            <button class="start-btn">Start Exploring</button>
+            <img src="car.jpg" alt="Car" height="300" width="500">
+        </div>   
+        <div class="content">
+            <div class="listings-header">
+                <h2 class="listings-title">Renter Listing</h2>
+            </div> 
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Client Name</th>
+                        <th>License Number</th>
+                        <th>contact Number</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="renter-details">
                 </tbody>
             </table>
         </div>
