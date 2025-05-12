@@ -17,7 +17,6 @@
                 <h1>User Complaints </h1>
             </div>
 
-           
             <div class="filters">
                 <div class="search">
                     <input type="text" placeholder="Search by ID, user, or keyword..." id="searchInput">
@@ -111,12 +110,12 @@
     </div>
 
     <script>
-        // Sample complaint data - this would typically come from your backend
+    
         const complaints = [
             {
                 id: "COMP001",
                 userId: "USER123",
-                userName: "John Smith",
+                userName: "John",
                 userType: "Renter",
                 subject: "Car not in advertised condition",
                 description: "The car I rented had scratches and dents that were not shown in the photos. The interior also had stains on the seats.",
@@ -126,7 +125,7 @@
             {
                 id: "COMP002",
                 userId: "USER456",
-                userName: "Alice Johnson",
+                userName: "Leo",
                 userType: "Renter",
                 subject: "Late delivery of vehicle",
                 description: "I was supposed to receive my rental car at 9:00 AM, but the owner did not show up until 12:30 PM. This caused me to miss an important appointment.",
@@ -136,7 +135,7 @@
             {
                 id: "COMP003",
                 userId: "USER789",
-                userName: "Robert Chen",
+                userName: "Raj",
                 userType: "Owner",
                 subject: "Renter returned car with damages",
                 description: "The renter returned my car with a large scratch on the passenger door that wasn't there before. They refuse to pay for the damage.",
@@ -146,7 +145,7 @@
             {
                 id: "COMP004",
                 userId: "USER234",
-                userName: "Sarah Miller",
+                userName: "Pavitara",
                 userType: "Renter",
                 subject: "Incorrect charges on booking",
                 description: "I was charged $50 more than the price shown on the booking page. I have screenshots of the original price.",
@@ -156,7 +155,7 @@
             {
                 id: "COMP005",
                 userId: "USER567",
-                userName: "David Wilson",
+                userName: "Priyangshu",
                 userType: "Owner",
                 subject: "Payment not received",
                 description: "I rented out my car on April 25th, but I haven't received the payment yet even though the system shows the rental as completed.",
@@ -203,25 +202,20 @@
             }
         }
 
-        // Set up event listeners
         function setupEventListeners() {
-            // Modal functionality
             const modal = document.getElementById('complaintModal');
             const span = document.getElementsByClassName('close')[0];
 
-            // When the user clicks on the close button, close the modal
             span.onclick = function() {
                 modal.style.display = "none";
             }
 
-            // When the user clicks anywhere outside of the modal, close it
             window.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
                 }
             }
 
-            // View details button click
             document.querySelectorAll('.view-btn').forEach(button => {
                 button.addEventListener('click', function() {
                     const complaintId = this.getAttribute('data-id');
@@ -229,13 +223,10 @@
                 });
             });
 
-            // Filter by status
             document.getElementById('statusFilter').addEventListener('change', filterComplaints);
-            
-            // Search functionality
+
             document.getElementById('searchInput').addEventListener('input', filterComplaints);
 
-            // Action buttons in modal
             document.getElementById('markProgress').addEventListener('click', function() {
                 updateComplaintStatus('in-progress');
             });
@@ -249,7 +240,6 @@
             });
         }
 
-        // Open the complaint modal with details
         function openComplaintModal(complaintId) {
             const complaint = complaints.find(c => c.id === complaintId);
             if (!complaint) return;
@@ -263,14 +253,14 @@
             document.getElementById('complaintStatus').textContent = formatStatus(complaint.status);
             document.getElementById('complaintDescription').textContent = complaint.description;
 
-            // Store the current complaint ID in the modal for reference
+            
             document.getElementById('complaintModal').setAttribute('data-current-id', complaintId);
 
-            // Show the modal
+      
             document.getElementById('complaintModal').style.display = "block";
         }
 
-        // Update complaint status
+
         function updateComplaintStatus(newStatus) {
             const modal = document.getElementById('complaintModal');
             const complaintId = modal.getAttribute('data-current-id');
@@ -281,39 +271,34 @@
                 return;
             }
 
-            // Find the complaint in our array
             const complaintIndex = complaints.findIndex(c => c.id === complaintId);
             if (complaintIndex !== -1) {
-                // Update the status
+                
                 complaints[complaintIndex].status = newStatus;
                 
-                // In a real application, you would send this to your server
-                // For now, we'll just update our local data and UI
                 
-                // Refresh the table
+                
+                
                 populateComplaintsTable(complaints);
                 
-                // Re-attach event listeners
+                
                 setupEventListeners();
                 
-                // Update the status in the modal
                 document.getElementById('complaintStatus').textContent = formatStatus(newStatus);
                 
-                // Show confirmation
                 alert(`Complaint ${complaintId} has been marked as ${formatStatus(newStatus)}.`);
             }
         }
 
-        // Filter complaints based on search input and status selection
+        
         function filterComplaints() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const statusFilter = document.getElementById('statusFilter').value;
 
             const filteredComplaints = complaints.filter(complaint => {
-                // Filter by status
+                
                 const statusMatch = statusFilter === 'all' || complaint.status === statusFilter;
                 
-                // Filter by search term
                 const searchMatch = 
                     complaint.id.toLowerCase().includes(searchTerm) || 
                     complaint.userName.toLowerCase().includes(searchTerm) || 

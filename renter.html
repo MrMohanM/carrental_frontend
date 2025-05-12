@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Easy Cars</title>
+    <title>easy cars</title>
     <link rel="stylesheet" href="style.css">
     <script src="index.js"></script>
 </head>
@@ -14,14 +14,14 @@
             <ul class="nav">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#car">Find Cars</a></li>
-                <li><a href="#how">How it works</a></li>
                 <li><a href="#complaint">Complaint Register</a></li>
+                <li><a href="#how">How it works</a></li>
                 <li><a href="#">About us</a></li>
                 <li><a href="#">Contact us</a></li>
             </ul>
-            <div class="userform">
-                <button class="login" id="login" onclick="login()">Login</button>
-                <button class="register" id="register" onclick="register">Register</button>
+           <div>
+                <span class="Usericon">RE</span>
+                <span style="margin-right:5px; color:rgb(182, 177, 177);">USER</span>
             </div>
          </div>
     </header>
@@ -67,11 +67,10 @@
             <label for="userType">User Type:</label>
             <select id="userType" name="userType" required style="padding:8px; border-radius:5px; font-size:medium;">
                 <option value="" disabled selected>Select user type</option>
-                <option value="renter">Renter</option>
-                <option value="user">User</option>
+                <option value="renter" default>Renter</option>
             </select>
         
-            <label for="bookingId">Booking ID (optional):</label>
+            <label for="bookingId">Booking ID :</label>
             <input type="text" id="bookingId" name="bookingId" placeholder="Your Booking ID">
         
             <label for="issue">Complaint Details:</label>
@@ -86,17 +85,17 @@
             <div class="step">
                 <span class="steps">1</span>
                 <h3>Create an account</h3>
-                <p>sign up as a renter or car owner and verify your identity to get started</p>
+                <p>sign up as a renter and verify your identity to get started</p>
             </div>
             <div class="step">
                 <span class="steps">2</span>
                 <h3>Find or List a Car</h3>
-                <p>Search for available cars or list your own with detailed information</p>
+                <p>Search for available cars </p>
             </div>
             <div class="step">
                 <span class="steps">3</span>
-                <h3>Book or approve</h3>
-                <p>Book a car or approve rental requests for your listed vehicle</p>
+                <h3>Book </h3>
+                <p>Book a car from the listed vehicle</p>
             </div>
             <div class="step">
                 <span class="steps">4</span>
@@ -112,7 +111,7 @@
             <p> The most reliable car rental platform 
                 connecting car rental platform
                  connecting car owners and renters
-            </p>
+                </p>
        </div>
        <div class="col">
             <h3><span >Quick</span> Links</h3>

@@ -130,7 +130,13 @@ function populateRenterTable(data) {
             <td>${ren.clientname}</td>
             <td>${ren.licensenumber}</td>
             <td>${ren.contact}</td>
-            <td><span class="status ${ren.status}">${formatStatus(ren.status)}</span></td>
+            <td>
+                <select class="status-dropdown" ">
+                    <option  value="pending" ${ren.status === 'pending' ? 'selected' : ''}>Pending</option>
+                    <option value="approved" ${ren.status === 'approved' ? 'selected' : ''}>Approved</option>
+                    <option value="rejected" ${ren.status === 'rejected' ? 'selected' : ''}>Rejected</option>
+                </select>
+            </td>
             
         `;
         tableBody.appendChild(row);
@@ -147,7 +153,13 @@ function populateVechileTable(data) {
             <td>${vechile.ownername}</td>
             <td>${vechile.cartype}</td>
             <td>${vechile.rcno}</td>
-            <td><span class="status ${vechile.status}">${formatStatus(vechile.status)}</span></td>
+            <td>
+                <select class="status-dropdown">
+                    <option value="pending" ${vechile.status === 'pending' ? 'selected' : ''}>Pending</option>
+                    <option value="approved" ${vechile.status === 'approved' ? 'selected' : ''}>Approved</option>
+                    <option value="rejected" ${vechile.status === 'rejected' ? 'selected' : ''}>Rejected</option>
+                </select>
+            </td>
             
         `;
         tableBody.appendChild(row);
@@ -213,15 +225,3 @@ function setActiveLink(event) {
     event.target.classList.add('active');
 }
 
-function adjustForm(selectElement) {
-    const value = selectElement.value;
-    if (value === "ver") {
-        selectElement.style.color = "green";
-    } else if (value === "pro") {
-        selectElement.style.color = "orange"; 
-    } else if (value === "rej") {
-        selectElement.style.color = "red";
-    } else {
-        selectElement.style.color = "black";
-    }
-}

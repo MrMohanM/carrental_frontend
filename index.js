@@ -56,6 +56,15 @@ const car_details=[
 ]
 document.addEventListener('DOMContentLoaded', function() {
     populateVechileCard(car_details);
+        const loginButton = document.getElementById("login");
+        const registerButton =document.getElementById("register")
+
+        loginButton.addEventListener("click", function (event) {
+            window.location.href = "login.html";
+        });
+        registerButton.addEventListener("click",function(event){
+            window.location.href = "register.html";
+        });
 });
 function populateVechileCard(data) {
     const card = document.getElementById('car');

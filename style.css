@@ -52,6 +52,16 @@ button{
     background-color: #42b8ee;
     
 }
+.Usericon{
+    width: 25px;
+    height: 25px;
+    background-color:rgb(164, 164, 168);
+    border-radius: 50%;
+    align-items: right;
+    justify-content: center;
+    color: #0594d8;
+    font-size: 17px;
+}
 .middle-container{
     padding: 25px;
     padding-left: 10%;
@@ -84,6 +94,27 @@ button{
 .search{
     color: antiquewhite;
     background-color: #0594d8;
+}
+.request-table
+{
+    width: 100%;
+    border-collapse: collapse;
+}
+.request-table th {
+    text-align: left;
+    padding: 12px 15px;
+    color: #888;
+    font-weight: 500;
+    font-size: 20px;
+    border-bottom: 1px solid #eee;
+    
+}
+
+.request-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #dddddd;
+    color: #333;
+    font-size: 20px; 
 }
 input{
     border-radius: 5px;
@@ -170,6 +201,11 @@ input{
     justify-content: space-between;
     margin-top: 15px;
 }
+.owner-button {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
 
 .view-details, .book-now {
     padding: 8px 15px;
@@ -179,24 +215,48 @@ input{
     border: none;
     transition: background-color 0.2s ease;
 }
-
+.edit-details, .delete {
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease;
+}
 .view-details {
     background-color: #ffffff;
     color: #333;
 }
-
+.edit-details {
+    background-color: #ffffff;
+    color: #333;
+}
 .book-now {
     background-color: #ffffff;
     color: rgb(0, 0, 0);
 }
-
+.delete {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+}
 .view-details:hover {
+    background-color: #c2baba;
+}
+.edit-details:hover {
     background-color: #c2baba;
 }
 
 .book-now:hover {
     background-color: #0482c0;
     color: #ffffff;
+}
+.delete:hover {
+    background-color: #cf2b2b;
+    color: #0c0c0c;
+}
+.addcar{
+    color: black;
+    font-size: medium;
+    background-color: #42b8ee;
 }
 .complaint {
     width: 500px;
@@ -275,3 +335,56 @@ footer span:hover{
 .col ul{
     list-style: none;
 }
+
+
+.upload-container {
+    background-color: white;
+    width: 90%;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    display: none;
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 600;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  input[type="file"]{
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+
+  .upload-btn {
+    background-color: #0594d8;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .upload-btn:hover {
+    background-color: #007bbf;
+  }
+
+  .note {
+    font-size: 0.9em;
+    color: #777;
+  }
