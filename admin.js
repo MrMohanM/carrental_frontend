@@ -1,7 +1,7 @@
 const trips=[
     {
         no:"1",
-        clientname:"priyanshu",
+        clientname:"Priyanshu",
         cartype: "Maruti Suzuki Alto",
         carnumber:"TN 11 aq 4505",
         ownername:"Mohan M",
@@ -9,15 +9,15 @@ const trips=[
     },
     {
         no:"2",
-        clientname:"priyanshu",
-        cartype: "Maruti Suzuki Alto",
-        carnumber:"TN 11 aq 4505",
-        ownername:"Mohan M",
+        clientname:"Ashok s",
+        cartype: "Maruti Suzuki Fronx",
+        carnumber:"TN 21 aq 4705",
+        ownername:"Magesh",
         tripstatus: "finished"
     },
     {
         no:"3",
-        clientname:"priyanshu",
+        clientname:"Prithivi",
         cartype: "Maruti Suzuki Alto",
         carnumber:"TN 11 aq 4505",
         ownername:"Mohan M",
@@ -130,6 +130,7 @@ function populateRenterTable(data) {
             <td>${ren.clientname}</td>
             <td>${ren.licensenumber}</td>
             <td>${ren.contact}</td>
+            <td>${ren.status}</td>
             <td>
                 <select class="status-dropdown" ">
                     <option  value="pending" ${ren.status === 'pending' ? 'selected' : ''}>Pending</option>
@@ -216,7 +217,6 @@ function renter(){
 function complaints(){
     window.location.href="complaint.html"
 }
-// Function to handle link clicks and add underline
 function setActiveLink(event) {
     let links = document.querySelectorAll('.nav a');
     links.forEach(link => {

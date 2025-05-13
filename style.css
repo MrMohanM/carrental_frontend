@@ -10,6 +10,8 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
+    padding-left: 2%;
+    padding-right: 2%;
 }
 .header-container {
     display: flex;
@@ -19,6 +21,7 @@ header {
 }
 .easycars{
     color:#0594d8;
+    padding: auto;
 }
 .easycars span{
     color:orange;
@@ -31,10 +34,15 @@ header {
 .nav a{
     text-decoration: none;
     color: black;
-    transition: all 0.5 ease ;
 }
 .nav a:hover{
-    color: #0594d8;
+    color: #637780;
+    text-decoration: underline;
+    
+}
+.nav a.active {
+    text-decoration: underline;
+    color: #637780;  
 }
 button{
     padding: 10px 20px;
@@ -55,12 +63,12 @@ button{
 .Usericon{
     width: 25px;
     height: 25px;
-    background-color:rgb(164, 164, 168);
+    background-color:rgb(141, 141, 145);
     border-radius: 50%;
     align-items: right;
     justify-content: center;
-    color: #0594d8;
-    font-size: 17px;
+    color: #000000;
+    font-size: 20px;
 }
 .middle-container{
     padding: 25px;
@@ -69,9 +77,9 @@ button{
 .find-car{
     color: black;
     font-size: medium;
-    background-color: #beb2b2;
+    background-color: #42b8ee;
 }
-.search-container{
+.search-container {
     background-color: rgb(209, 209, 209);
     border-radius: 8px;
     padding: 20px;
@@ -79,22 +87,57 @@ button{
     margin-top: 30px;
     font-size: medium;
     font-weight: 700;
+    margin-bottom: 20px;
 }
 
-.search-form{
+.search-form {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: 1fr auto;       
     gap: 15px;
+    align-items: end;
 }
-.search-data{
+
+.search-data {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
-.search{
-    color: antiquewhite;
-    background-color: #0594d8;
+
+.search-data input {
+    height: 45px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 100%;
 }
+
+.search-icon-wrapper {
+    height: 45px;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon-wrapper i {
+    height: 45px;
+    width: 45px;
+    color: #ffffff;
+    background-color: #289ed4;
+    border-radius: 5px;
+    font-size: 18px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+  
+.search-icon:hover{
+    background-color: #3273ecd3;
+}
+    
 .request-table
 {
     width: 100%;
@@ -281,8 +324,6 @@ input{
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 30px;
     margin-bottom: 50px;
-   
- 
 }
 .step {
     padding: 30px;
@@ -295,6 +336,7 @@ input{
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     margin: 0 auto 20px;
     color: #0594d8;
     font-size: 30px;
@@ -303,12 +345,15 @@ input{
     margin-bottom: 15px;
     color: black;
     align-items: center;
+    text-align: center;
+    
 }
 
 .step p {
     color: grey;
     line-height: 1.6;
     align-items: center;
+    padding-left:45px;
 }
 footer{
     background-color: rgb(32, 5, 77);
@@ -360,6 +405,7 @@ footer span:hover{
 
   input[type="text"],
   input[type="number"],
+  input[type="email"],
   input[type="file"]{
     width: 100%;
     padding: 10px;

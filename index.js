@@ -20,7 +20,7 @@ const car_details=[
     {
         img_url:"Swift 2022.jpg",
         carname:"Swift 2022",
-        price:"215",
+        price:"300",
         type:"manual",
         fuel:"petrol",
         seat:'5',
@@ -28,36 +28,39 @@ const car_details=[
     },
     {
         img_url:"Swift 2022.jpg",
-        carname:"Swift 2022",
-        price:"215",
+        carname:"toyota 2022",
+        price:"250",
         type:"manual",
         fuel:"petrol",
         seat:'5',
-        location:"Chrompet, Chennai"
+        location:"porur, Chennai"
     },
     {
         img_url:"Swift 2022.jpg",
-        carname:"Swift 2022",
-        price:"215",
+        carname:"Tata 2022",
+        price:"250",
         type:"manual",
         fuel:"petrol",
         seat:'5',
-        location:"Chrompet, Chennai"
+        location:"porur, Chennai"
     }, 
     {
         img_url:"Swift 2022.jpg",
-        carname:"Swift 2022",
-        price:"215",
+        carname:"toyota 2022",
+        price:"300",
         type:"manual",
         fuel:"petrol",
         seat:'5',
-        location:"Chrompet, Chennai"
+        location:"vadapalni, Chennai"
     }
 ]
 document.addEventListener('DOMContentLoaded', function() {
     populateVechileCard(car_details);
-        const loginButton = document.getElementById("login");
-        const registerButton =document.getElementById("register")
+    setupEventListeners()
+});
+function setupEventListeners(){
+    const loginButton = document.getElementById("login");
+    const registerButton =document.getElementById("register")
 
         loginButton.addEventListener("click", function (event) {
             window.location.href = "login.html";
@@ -65,7 +68,21 @@ document.addEventListener('DOMContentLoaded', function() {
         registerButton.addEventListener("click",function(event){
             window.location.href = "register.html";
         });
-});
+        const search_icon= document.getElementById("search-icon");
+        search_icon.addEventListener("click",function(event){
+            const searchTerm = document.getElementById('search-key').value.toLowerCase();
+            const filteredcars = car_details.filter(car_detail => {
+                
+                const searchMatch = 
+                    car_detail.price.toLowerCase().includes(searchTerm) || 
+                    car_detail.carname.toLowerCase().includes(searchTerm) || 
+                    car_detail.location.toLowerCase().includes(searchTerm);
+                return searchMatch;
+            });
+            populateVechileCard(filteredcars);
+            setupEventListeners();
+        });
+}
 function populateVechileCard(data) {
     const card = document.getElementById('car');
     card.innerHTML = '';
@@ -80,7 +97,7 @@ function populateVechileCard(data) {
         
         <div class="car-details">
             <div class="car-title">
-                <h3>Swift 2022</h3>
+                <h3>${car.carname}</h3>
                 <span class="car-price">${car.price}/hours</span>
             </div>
             <div class="car-specs">
@@ -101,3 +118,11 @@ function populateVechileCard(data) {
         card.appendChild(con);
     });
 }
+function setActiveLink(event) {
+    let links = document.querySelectorAll('.nav a');
+    links.forEach(link => {
+        link.classList.remove('active');
+    });
+    event.target.classList.add('active');
+}
+

@@ -96,24 +96,22 @@ button{
     border-collapse: collapse;
 }
 
-
 .trip th {
+    background-color: rgb(219, 218, 186);
+    padding: 12px;
     text-align: left;
-    padding: 12px 15px;
-    color: #888;
-    font-weight: 500;
-    font-size: 20px;
-    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
     
 }
 
 .trip td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #dddddd;
-    color: #333;
-    font-size: 20px;
-    
-   
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.trip tr:hover {
+    background-color: #e9e3e3;
 }
 
 .client {
@@ -171,23 +169,24 @@ button{
     border-collapse: collapse;
 }
 
-
 .renter th {
+    background-color: rgb(219, 218, 186);
+    padding: 12px;
     text-align: left;
-    padding: 12px 15px;
-    color: #888;
-    font-weight: 500;
-    font-size: 20px;
-    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
     
 }
 
 .renter td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #dddddd;
-    color: #333;
-    font-size: 20px; 
+    padding: 12px;
+    border-bottom: 1px solid #eee;
 }
+
+.renter tr:hover {
+    background-color: #e9e3e3;
+}
+
 .owner {
     max-width: 1200px;
     margin: 20px auto;
@@ -202,22 +201,21 @@ button{
     border-collapse: collapse;
 }
 
-
 .owner th {
+    background-color: rgb(219, 218, 186);
+    padding: 12px;
     text-align: left;
-    padding: 12px 15px;
-    color: #888;
-    font-weight: 500;
-    font-size: 20px;
-    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 0;
     
 }
 
 .owner td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #dddddd;
-    color: #333;
-    font-size: 20px; 
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+.owner tr:hover {
+    background-color: #e9e3e3;
 }
 .processing {
     background-color: #ede9fe;

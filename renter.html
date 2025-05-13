@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>easy cars</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="index.js"></script>
 </head>
 <body>
@@ -28,27 +29,19 @@
     <div class="middle-container" id="home">
         <h1>Find the Perfect car for Your Journey</h1>
         <p>Rent cars from trusted owners car to earn income</p>
+        <br>
         <button class="find-car" id="find-car">Find car</button>
         <div class="search-container">
-            <form class="search-form">
+            <form class="search-form" id="searchForm">
                 <div class="search-data">
-                    <label for="location">Location</label>
-                    <input type="text" name="location" id="location" placeholder="Enter the location">
+                    <input type="text" name="search-key" id="search-key" placeholder="Enter the area, car, model, fuel" required>
                 </div>
-                <div class="search-data">
-                    <label for="pickup">Pickup Date</label>
-                    <input type="date" name="pickup" id="pickup">
-                </div>
-                <div class="search-data">
-                    <label for="return">return Date</label>
-                    <input type="date" name="return" id="return">
-                </div>
-                <div class="search-data">
-                    <input type="submit" class="search" id="search" value="Search">
+                <div class="search-icon-wrapper">
+                    <i class="search-icon fas fa-search" id="search-icon"title="Search"></i>
                 </div>
             </form>
-        </div>
-        <hr>
+        </div>          
+        <div><hr></div>
          <h2 class="title"> Feat<span class="middle-underline">ured C</span>ars</h2>
          <br>
         <div class="car-container" id="car">

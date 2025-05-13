@@ -15,7 +15,7 @@ body, html {
     color: var(--text-dark);
 }
 
-/* Header styles */
+
 .header {
     background-color: var(--panel-color);
     box-shadow: var(--box-shadow);
@@ -32,7 +32,6 @@ body, html {
     color: var(--secondary-color);
 }
 
-/* Main content styles */
 .main-content {
     padding: 20px;
     max-width: 1200px;
@@ -166,7 +165,7 @@ tbody tr:hover {
     border-color: var(--secondary-color);
 }
 
-/* Modal styles */
+
 .modal {
     display: none;
     position: fixed;

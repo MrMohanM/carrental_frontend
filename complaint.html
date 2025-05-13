@@ -45,7 +45,7 @@
                         </tr>
                     </thead>
                     <tbody id="complaintsTableBody">
-                        <!-- Table rows will be inserted dynamically by JavaScript -->
+                        <!-- complaint listing here -->
                     </tbody>
                 </table>
             </div>
@@ -164,13 +164,13 @@
             }
         ];
 
-        // Populate the table when the page loads
+        
         document.addEventListener('DOMContentLoaded', function() {
             populateComplaintsTable(complaints);
             setupEventListeners();
         });
 
-        // Populate the complaints table
+    
         function populateComplaintsTable(data) {
             const tableBody = document.getElementById('complaintsTableBody');
             tableBody.innerHTML = '';
@@ -191,9 +191,9 @@
             });
         }
 
-        // Format status text
+        
         function formatStatus(status) {
-            switch(status) {
+        switch(status) {
                 case 'pending': return 'Pending';
                 case 'in-progress': return 'In Progress';
                 case 'resolved': return 'Resolved';
@@ -253,7 +253,6 @@
             document.getElementById('complaintStatus').textContent = formatStatus(complaint.status);
             document.getElementById('complaintDescription').textContent = complaint.description;
 
-            
             document.getElementById('complaintModal').setAttribute('data-current-id', complaintId);
 
       
@@ -275,8 +274,6 @@
             if (complaintIndex !== -1) {
                 
                 complaints[complaintIndex].status = newStatus;
-                
-                
                 
                 
                 populateComplaintsTable(complaints);
