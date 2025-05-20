@@ -118,7 +118,17 @@ document.addEventListener('DOMContentLoaded', function() {
     populateVechileTable(vechile);
     populateTripTable(trips);
     populateRenterTable(client); 
+    setupEventListeners()
+    
 });
+function setupEventListeners(){
+    document.querySelectorAll('.change-st').forEach(button => {
+        button.addEventListener('click', function() {
+            const reno = this.getAttribute('data-id');
+            openrentModal(reno);
+        });
+    });
+}
 function populateRenterTable(data) {
     const tableBody = document.getElementById('renter-details');
     tableBody.innerHTML = '';
@@ -132,11 +142,7 @@ function populateRenterTable(data) {
             <td>${ren.contact}</td>
             <td>${ren.status}</td>
             <td>
-                <select class="status-dropdown" ">
-                    <option  value="pending" ${ren.status === 'pending' ? 'selected' : ''}>Pending</option>
-                    <option value="approved" ${ren.status === 'approved' ? 'selected' : ''}>Approved</option>
-                    <option value="rejected" ${ren.status === 'rejected' ? 'selected' : ''}>Rejected</option>
-                </select>
+                <button class="change-st" data-id="${ren.no}">Change Status</button>
             </td>
             
         `;
