@@ -11,23 +11,23 @@ const trips=[
         no:"2",
         clientname:"Ashok s",
         cartype: "Maruti Suzuki Fronx",
-        carnumber:"TN 21 aq 4705",
+        carnumber:"TN 21 aq 4778",
         ownername:"Magesh",
         tripstatus: "finished"
     },
     {
         no:"3",
         clientname:"Prithivi",
-        cartype: "Maruti Suzuki Alto",
-        carnumber:"TN 11 aq 4505",
+        cartype: "Tata  Punch",
+        carnumber:"TN 11 aq 4506",
         ownername:"Mohan M",
         tripstatus: "finished"
     },
     {
         no:"4",
-        clientname:"priyanshu",
+        clientname:"Ram",
         cartype: "Maruti Suzuki Alto",
-        carnumber:"TN 11 aq 4505",
+        carnumber:"TN 11 aq 4565",
         ownername:"Mohan M",
         tripstatus: "finished"
     }
@@ -42,35 +42,35 @@ const client=[
     },
     {
         no:2,
-        clientname:"Leo William",
+        clientname:"Raja",
         licensenumber:"TN-11-2024-1234567",
         contact:"9140480297",
         status:"verified"
     },
     {
         no:3,
-        clientname:"Leo William",
+        clientname:"Deva",
         licensenumber:"TN-11-2024-1234567",
         contact:"9140480297",
         status:"verified"
     },
     {
         no:4,
-        clientname:"Leo William",
+        clientname:"Praveen",
         licensenumber:"TN-11-2024-1234567",
         contact:"9140480297",
         status:"verified"
     },
     {
         no:5,
-        clientname:"Leo William",
+        clientname:"kamal",
         licensenumber:"TN-11-2024-1234567",
         contact:"9140480297",
         status:"verified"
     },
     {
         no:6,
-        clientname:"Leo William",
+        clientname:"Pavithara",
         licensenumber:"TN-11-2024-1234567",
         contact:"9140480297",
         status:"verified"
@@ -84,31 +84,31 @@ const vechile=[
         status:"verified"
     },
     {   no:2,
-        ownername:"Mohan M",
+        ownername:"Ramesh",
         cartype:"Maruti Suzuki Alto",
         rcno:"TN 11 aq 4505",
         status:"verified"
     },
     {   no:3,
-        ownername:"Mohan M",
+        ownername:"Rajesh",
         cartype:"Maruti Suzuki Alto",
         rcno:"TN 11 aq 4505",
         status:"verified"
     },
     {   no:4,
-        ownername:"Mohan M",
+        ownername:"Madhavam",
         cartype:"Maruti Suzuki Alto",
         rcno:"TN 11 aq 4505",
         status:"verified"
     },
     {   no:5,
-        ownername:"Mohan M",
+        ownername:"Boomika",
         cartype:"Maruti Suzuki Alto",
         rcno:"TN 11 aq 4505",
         status:"verified"
     },
     {   no:6,
-        ownername:"Mohan M",
+        ownername:"Gayathri",
         cartype:"Maruti Suzuki Alto",
         rcno:"TN 11 aq 4505",
         status:"verified"
@@ -121,11 +121,18 @@ document.addEventListener('DOMContentLoaded', function() {
     setupEventListeners()
     
 });
-function setupEventListeners(){
+function setupEventListeners() {
     document.querySelectorAll('.change-st').forEach(button => {
-        button.addEventListener('click', function() {
-            const reno = this.getAttribute('data-id');
-            openrentModal(reno);
+        button.addEventListener('click', function () {
+            const id = this.getAttribute('data-id');
+            const dropdown = document.querySelector(`.renter-status-dropdown[data-id="${id}"]`);
+            const newStatus = dropdown.value;
+
+            const renter = client.find(r => r.no == id);
+            if (renter) {
+                renter.status = newStatus;
+                alert(`Status updated to: ${newStatus}`);
+            }
         });
     });
 }
@@ -140,14 +147,21 @@ function populateRenterTable(data) {
             <td>${ren.clientname}</td>
             <td>${ren.licensenumber}</td>
             <td>${ren.contact}</td>
-            <td>${ren.status}</td>
             <td>
-                <button class="change-st" data-id="${ren.no}">Change Status</button>
+                <select class="form-select form-select-sm renter-status-dropdown" data-id="${ren.no}">
+                    <option value="pending" ${ren.status === 'pending' ? 'selected' : ''}>Pending</option>
+                    <option value="verified" ${ren.status === 'verified' ? 'selected' : ''}>Verified</option>
+                    <option value="rejected" ${ren.status === 'rejected' ? 'selected' : ''}>Rejected</option>
+                </select>
             </td>
-            
+            <td>
+                <button class="btn btn-primary btn-sm change-st" data-id="${ren.no}">Change Status</button>
+            </td>
         `;
         tableBody.appendChild(row);
     });
+
+    setupEventListeners();
 }
 function populateVechileTable(data) {
     const tableBody = document.getElementById('vehicle-details');
@@ -161,7 +175,7 @@ function populateVechileTable(data) {
             <td>${vechile.cartype}</td>
             <td>${vechile.rcno}</td>
             <td>
-                <select class="status-dropdown">
+            <select class="form-select form-select-sm status-dropdown">
                     <option value="pending" ${vechile.status === 'pending' ? 'selected' : ''}>Pending</option>
                     <option value="approved" ${vechile.status === 'approved' ? 'selected' : ''}>Approved</option>
                     <option value="rejected" ${vechile.status === 'rejected' ? 'selected' : ''}>Rejected</option>
@@ -199,6 +213,7 @@ function formatStatus(status) {
         default: return status;
     }
 }
+
 function trip(){
         document.getElementById("trip").style.display="block";
     
@@ -230,4 +245,3 @@ function setActiveLink(event) {
     });
     event.target.classList.add('active');
 }
-

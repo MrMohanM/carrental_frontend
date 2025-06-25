@@ -9,9 +9,9 @@ const car_details=[
         location:"Chrompet, Chennai"
     },
     {
-        img_url:"Swift 2022.jpg",
-        carname:"Swift 2022",
-        price:"215",
+        img_url:"punch.jpeg",
+        carname:"Tata Punch",
+        price:"315",
         type:"manual",
         fuel:"petrol",
         seat:'5',
@@ -21,29 +21,29 @@ const car_details=[
 const client=[
     {
         no:1,
-        clientname:"Leo William",
-        contact:"9140480297",
+        clientname:"Raja",
+        contact:"9140480247",
         date:"12/05/2025",
-        time:"9:00 AM",
+        time:"12:00 AM",
         hours:"8",
         status:"pending"
     },
     {
         no:2,
-        clientname:"Leo William",
+        clientname:"Rajesh",
         contact:"9140480297",
-        date:"12/05/2025",
+        date:"13/05/2025",
         time:"9:00 AM",
-        hours:"8",
+        hours:"3",
         status:"pending"
     },
     {
         no:3,
         clientname:"Leo William",
-        contact:"9140480297",
-        date:"12/05/2025",
-        time:"9:00 AM",
-        hours:"8",
+        contact:"9140480237",
+        date:"14/05/2025",
+        time:"2:00 PM",
+        hours:"5",
         status:"pending"
     }
 ]
@@ -67,7 +67,7 @@ function populateVechileCard(data) {
         
         <div class="car-details">
             <div class="car-title">
-                <h3>Swift 2022</h3>
+                <h3>${car.carname}</h3>
                 <span class="car-price">${car.price}/hours</span>
             </div>
             <div class="car-specs">
